@@ -18,31 +18,42 @@ public class ValidationUtils {
 //	}
 	
 	
-	
 	public static boolean authenticateName(String name) {
 		
-		if(name.matches("[A-Za-z]{120}")) {
-			return true;
+		try {
+			if(name.matches("[A-Za-z]{120}")) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.getMessage();
 		}
 		return false;
 	}
 	
-	
 	public static boolean authenticateEmail(String email) {
 		
-		if(email.matches("^[A-Za-z0-9+_.-]+@(.+)$){11}")) {
-			return true;
+		try {
+			
+			if(email.matches("^[A-Za-z0-9+_.-]+@(.+)$){11}")) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.getMessage();
 		}
 		return false;
 	}
 	
 	public static boolean authenticatePhone(String telephone) {
 		
-		if(telephone.matches("[0-9]{11}")) {
-			return true;
+		try {
+			
+			if(telephone.matches("[0-9]{11}")) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.getMessage();
 		}
 		return false;
 	}
-	
 	
 }
