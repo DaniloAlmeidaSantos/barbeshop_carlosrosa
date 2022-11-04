@@ -15,6 +15,7 @@ public abstract class ConnectionRepository {
 		try {
 			Class.forName(DRIVER);
 			connection = DriverManager.getConnection(URL, USER, PASSWORD);
+			return connection;
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());

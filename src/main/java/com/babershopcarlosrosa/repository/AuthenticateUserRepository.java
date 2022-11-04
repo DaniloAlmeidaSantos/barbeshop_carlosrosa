@@ -21,6 +21,7 @@ public class AuthenticateUserRepository extends ConnectionRepository {
 			ResultSet rs = stmt.executeQuery();
 			
 			while (rs.next()) {
+				rs.getString("USER_NAME");
 				return true;
 			}
 		} catch (Exception e) {
