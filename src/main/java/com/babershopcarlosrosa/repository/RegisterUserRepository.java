@@ -15,9 +15,10 @@ public class RegisterUserRepository extends ConnectionRepository{
 			
 			//Revisar o codigo para inserir no banco pois esta diferente da super.UserModel
 			
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO TB_USER (USER_CPF, USER_NAME, USER_EMAIL, USER_PASSWORD, USER_PHONE, USER_TYPE) VALUES (?, ?, ?, ?, ?, ?)");		
-			int rowsAffected = stmt.executeUpdate();
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO TB_USER (USER_CPF, USER_NAME, USER_EMAIL, USER_PASSWORD, USER_PHONE, USER_TYPE) VALUES (?, ?, ?, ?, ?, ?)");
+			stmt.setString(1, customerDTO.getCpf());
 			
+			int rowsAffected = stmt.executeUpdate();					
 			if(rowsAffected > 0) {
 				return true;
 			}

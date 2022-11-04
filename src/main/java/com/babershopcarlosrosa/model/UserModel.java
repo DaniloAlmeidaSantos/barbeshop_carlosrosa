@@ -14,19 +14,22 @@ import lombok.ToString;
 public abstract class UserModel {
 
 	private String name;
-	private String lastName;
+	private String password;
 	private String email;
-	
+	private char userType;
+
+
 	public UserModel() {
-		
+
 	}
 
-	public UserModel(String name, String lastName, String email) {
+	public UserModel(String name, char userType, String email, String password) {
 		this.name = name;
-		this.lastName = lastName;
+		this.userType = userType;
 		this.email = email;
+		this.password = password;
 	}
-	
+
 	public abstract boolean actions();
 
 	public String getName() {
@@ -37,12 +40,12 @@ public abstract class UserModel {
 		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public char getUserType() {
+		return userType;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setUserType(char userType) {
+		this.userType = userType;
 	}
 
 	public String getEmail() {
@@ -52,5 +55,14 @@ public abstract class UserModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 
 }

@@ -7,10 +7,10 @@ public class CustomerDTO extends UserModel {
 	private String phone;
 	private String cpf;
 
-	public CustomerDTO(String name, String lastName, String email, String phone, String cpf) {
-		super(name, lastName, email);
+	public CustomerDTO(String name, char userType, String email, String phone, String cpf,String password) {
+		super(name, userType, email, password);
 		this.phone = phone;
-		this.cpf = cpf;
+		this.cpf = cpf;		
 	}
 
 	public String getPhone() {
