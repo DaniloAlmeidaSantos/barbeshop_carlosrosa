@@ -16,9 +16,15 @@ public class RegisterUserRepository extends ConnectionRepository{
 			//Revisar o codigo para inserir no banco pois esta diferente da super.UserModel
 			
 			PreparedStatement stmt = connection.prepareStatement("INSERT INTO TB_USER (USER_CPF, USER_NAME, USER_EMAIL, USER_PASSWORD, USER_PHONE, USER_TYPE) VALUES (?, ?, ?, ?, ?, ?)");
-			stmt.setString(1, customerDTO.getCpf());
+			stmt.setString(0, customerDTO.getCpf());
+			stmt.setString(1, customerDTO.getName());
+			stmt.setString(2, customerDTO.getEmail());
+			stmt.setString(3, customerDTO.getPassword());
+			stmt.setString(4, customerDTO.getPhone());
+			stmt.setString(5, customerDTO.getUserType());
 			
-			int rowsAffected = stmt.executeUpdate();					
+			int rowsAffected = stmt.executeUpdate();	
+			
 			if(rowsAffected > 0) {
 				return true;
 			}

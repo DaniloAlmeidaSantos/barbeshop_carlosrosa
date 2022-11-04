@@ -16,14 +16,14 @@ public abstract class UserModel {
 	private String name;
 	private String password;
 	private String email;
-	private char userType;
+	private String userType;
 
 
 	public UserModel() {
 
 	}
 
-	public UserModel(String name, char userType, String email, String password) {
+	public UserModel(String name, String userType, String email, String password) {
 		this.name = name;
 		this.userType = userType;
 		this.email = email;
@@ -40,11 +40,11 @@ public abstract class UserModel {
 		this.name = name;
 	}
 
-	public char getUserType() {
+	public String getUserType() {
 		return userType;
 	}
 
-	public void setUserType(char userType) {
+	public void setUserType(String userType) {
 		this.userType = userType;
 	}
 
