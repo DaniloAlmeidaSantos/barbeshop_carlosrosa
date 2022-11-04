@@ -33,5 +33,4 @@ public class CustomerDTO extends UserModel {
 	public boolean actions() {
 		return false;
 	}
-
 }

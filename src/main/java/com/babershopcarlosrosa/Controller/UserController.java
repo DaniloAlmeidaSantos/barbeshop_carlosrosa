@@ -3,6 +3,9 @@ package com.babershopcarlosrosa.Controller;
 import com.babershopcarlosrosa.model.dto.AuthenticateRequestDTO;
 import com.babershopcarlosrosa.model.dto.CustomerDTO;
 import com.babershopcarlosrosa.service.AuthenticateService;
+import com.babershopcarlosrosa.service.RegisterService;
+import com.babershopcarlosrosa.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +20,13 @@ public class UserController {
 
     @Autowired
     private AuthenticateService authenticateService;
+    
+    @Autowired
+    private RegisterService registerService;
 
     @PostMapping(value = "/login", consumes = "application/json")
     public ResponseEntity<String> login(@RequestBody AuthenticateRequestDTO request) {
-
+    	
         boolean isAuthenticated = authenticateService.authenticate(request);
 
         if (isAuthenticated) {
@@ -32,7 +38,14 @@ public class UserController {
     
     @PostMapping(value = "/register", consumes = "application/json")
     public ResponseEntity<String> register(@RequestBody CustomerDTO customerDTO) {
-        return ResponseEntity.status(HttpStatus.OK).body("User created");
+    	
+    	boolean isRegistered = registerService.register(customerDTO);
+    	
+    	if (isRegistered) {    		
+    		return ResponseEntity.status(HttpStatus.OK).body("User created");
+    	}
+    	
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error to create user");
     }
 
 }
