@@ -20,10 +20,10 @@ public class UserController {
     @PostMapping(value = "/login", consumes = "application/json")
     public ResponseEntity<String> login(@RequestBody AuthenticateRequestDTO request) {
 
-        boolean isAuthenticated = authenticateService.login(request);
+        boolean isAuthenticated = authenticateService.authenticate(request);
 
         if (isAuthenticated) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User authenticated");
+            return ResponseEntity.status(HttpStatus.OK).body("User authenticated");
         }
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
