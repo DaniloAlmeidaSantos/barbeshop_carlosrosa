@@ -4,28 +4,46 @@ import java.sql.Date;
 
 public class ScheduleDTO {
 
-	private Date dateTime;
-	private String status;
+	private int customerId;
+	private int barberId;
+	private Date date;
+	private Date time;
 
-	public ScheduleDTO(Date dateTime, String status) {
-		this.dateTime = dateTime;
-		this.status = status;
+	public int getBarberId() {
+		return barberId;
+	}
+	
+	public void setBarberId(int barberId) {
+		this.barberId = barberId;
+	}
+	
+	public int getCustomerId() {
+		return customerId;
 	}
 
-	public String getStatus() {
-		return status;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+	
+	public ScheduleDTO(Date date, Date time) {
+		this.date = date;
+		this.time = time;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public Date getTime() {
+		return time;
 	}
 
-	public Date getDateTime() {
-		return dateTime;
+	public void setTime(Date time) {
+		this.time = time;
 	}
 
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 }
