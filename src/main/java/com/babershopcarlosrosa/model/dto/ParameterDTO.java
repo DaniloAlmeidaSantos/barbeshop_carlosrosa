@@ -5,9 +5,8 @@ public class ParameterDTO {
 	private String hourInitWork;
 	private String hourEndWork;
 	private String namePlace;
-	
+
 	public ParameterDTO(String daysWork, String hourInitWork, String hourEndWork, String namePlace) {
-		super();
 		this.daysWork = daysWork;
 		this.hourInitWork = hourInitWork;
 		this.hourEndWork = hourEndWork;
@@ -44,5 +43,5 @@ public class ParameterDTO {
 
 	public void setNamePlace(String namePlace) {
 		this.namePlace = namePlace;
-	}		
+	}
 }

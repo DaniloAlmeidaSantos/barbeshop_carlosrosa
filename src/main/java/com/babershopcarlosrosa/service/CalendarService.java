@@ -1,12 +1,10 @@
 package com.babershopcarlosrosa.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
-import com.babershopcarlosrosa.model.dto.ScheduleDTO;
+import com.babershopcarlosrosa.model.dto.CalendarResponseDTO;
 
 @Service
 public interface CalendarService {
-	List<ScheduleDTO> showCalendar();
+	CalendarResponseDTO showCalendar(String date);
 }

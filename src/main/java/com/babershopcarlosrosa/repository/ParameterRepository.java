@@ -11,26 +11,25 @@ import com.babershopcarlosrosa.model.dto.ParameterDTO;
 import com.babershopcarlosrosa.repository.config.ConnectionRepositoryConfig;
 
 @Repository
-public class ParameterRepository extends ConnectionRepositoryConfig{	
-	
+public class ParameterRepository extends ConnectionRepositoryConfig {
+
 	public boolean verifyExistParameter(ParameterDTO workParameterDTO) {
 		try {
 			Connection connection = super.getConnection();
 
-			PreparedStatement stmt = connection.prepareStatement(
-					"SELECT COUNT(*) AS COUNT_ROWS FROM TB_PARAMETERS");
+			PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) AS COUNT_ROWS FROM TB_PARAMETERS");
 
 			ResultSet resultSet = stmt.executeQuery();
-			
-			if(resultSet.next()) {
-				int count = resultSet.getInt("COUNT_ROWS");			
-				if(count > 0) {
+
+			if (resultSet.next()) {
+				int count = resultSet.getInt("COUNT_ROWS");
+				if (count > 0) {
 					return updateWorkParameter(workParameterDTO);
-				}else {
+				} else {
 					return insertWorkParameter(workParameterDTO);
 				}
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
@@ -43,8 +42,31 @@ public class ParameterRepository extends ConnectionRepositoryConfig{
 		}
 		return false;
 	}
-	
-	
+
+	public ParameterDTO getParameters() {
+		try {
+			Connection connection = super.getConnection();
+			PreparedStatement stmt = connection.prepareStatement(
+					"SELECT PARAM_DAYS_WORK, PARAM_WORKLOAD_INIT, PARAM_WORKLOAD_FINISH, PARAM_NAME_PLACE FROM TB_PARAMETERS");
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				return new ParameterDTO(
+						rs.getString("PARAM_DAYS_WORK"),
+						rs.getString("PARAM_WORKLOAD_INIT"), 
+						rs.getString("PARAM_WORKLOAD_FINISH"), 
+						rs.getString("PARAM_NAME_PLACE")
+					);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+
+	}
+
 	private boolean updateWorkParameter(ParameterDTO workParametersDTO) {
 		try {
 			Connection connection = super.getConnection();
@@ -57,7 +79,7 @@ public class ParameterRepository extends ConnectionRepositoryConfig{
 			stmt.setString(4, workParametersDTO.getNamePlace());
 
 			int rowsAffected = stmt.executeUpdate();
-			
+
 			if (rowsAffected > 0) {
 				return true;
 			}
@@ -74,9 +96,7 @@ public class ParameterRepository extends ConnectionRepositoryConfig{
 
 		return false;
 	}
-	
-	
-	
+
 	private boolean insertWorkParameter(ParameterDTO workParametersDTO) {
 		try {
 			Connection connection = super.getConnection();
