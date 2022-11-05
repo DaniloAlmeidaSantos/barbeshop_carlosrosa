@@ -1,5 +1,6 @@
 package com.babershopcarlosrosa.Controller;
 
+import com.babershopcarlosrosa.model.dto.ApiResponseDTO;
 import com.babershopcarlosrosa.model.dto.AuthenticateRequestDTO;
 import com.babershopcarlosrosa.model.dto.CustomerDTO;
 import com.babershopcarlosrosa.service.AuthenticateService;
@@ -24,28 +25,28 @@ public class UserController {
     @Autowired
     private RegisterService registerService;
 
-    @PostMapping(value = "/login", consumes = "application/json")
-    public ResponseEntity<String> login(@RequestBody AuthenticateRequestDTO request) {
+    @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<ApiResponseDTO> login(@RequestBody AuthenticateRequestDTO request) {
     	
         boolean isAuthenticated = authenticateService.authenticate(request);
 
         if (isAuthenticated) {
-            return ResponseEntity.status(HttpStatus.OK).body("User authenticated");
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponseDTO("200", "User authenticated!"));
         }
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponseDTO("404", "User not found!"));
     }
     
-    @PostMapping(value = "/register", consumes = "application/json")
-    public ResponseEntity<String> register(@RequestBody CustomerDTO customerDTO) {
+    @PostMapping(value = "/register", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<ApiResponseDTO> register(@RequestBody CustomerDTO customerDTO) {
     	
     	boolean isRegistered = registerService.register(customerDTO);
     	
     	if (isRegistered) {    		
-    		return ResponseEntity.status(HttpStatus.OK).body("User created");
+    		return ResponseEntity.status(HttpStatus.OK).body(new ApiResponseDTO("200", "User Created!"));
     	}
     	
-    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error to create user");
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponseDTO("500", "Error to create user!"));
     }
 
 }
