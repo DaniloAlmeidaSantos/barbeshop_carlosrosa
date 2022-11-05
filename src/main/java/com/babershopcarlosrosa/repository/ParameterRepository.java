@@ -4,11 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import org.springframework.stereotype.Repository;
+
 import com.babershopcarlosrosa.model.dto.ParameterDTO;
+import com.babershopcarlosrosa.repository.config.ConnectionRepositoryConfig;
 
 @Repository
-public class ParameterRepository extends ConnectionRepository{	
+public class ParameterRepository extends ConnectionRepositoryConfig{	
 	
 	public boolean verifyExistParameter(ParameterDTO workParameterDTO) {
 		try {

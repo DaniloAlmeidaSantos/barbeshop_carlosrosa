@@ -8,9 +8,10 @@ import java.sql.SQLException;
 import org.springframework.stereotype.Repository;
 
 import com.babershopcarlosrosa.model.dto.AuthenticateRequestDTO;
+import com.babershopcarlosrosa.repository.config.ConnectionRepositoryConfig;
 
 @Repository
-public class AuthenticateUserRepository extends ConnectionRepository {
+public class AuthenticateUserRepository extends ConnectionRepositoryConfig {
 
 	public boolean authenticate(AuthenticateRequestDTO request) {
 
