@@ -1,9 +1,7 @@
 package com.babershopcarlosrosa.Controller;
 
-import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +15,7 @@ public class SchedulerController {
 	
 	@GetMapping(value = "/schedule", produces = "application/json")
 	public ResponseEntity<List<ScheduleDTO>> getSchedule() {
-		return ResponseEntity.status(HttpStatus.OK);
+		return ResponseEntity.ok(null);
 	}
 	
 }
