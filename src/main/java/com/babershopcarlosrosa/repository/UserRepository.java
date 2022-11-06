@@ -7,10 +7,11 @@ import java.sql.SQLException;
 import org.springframework.stereotype.Repository;
 
 import com.babershopcarlosrosa.model.dto.CustomerDTO;
+import com.babershopcarlosrosa.repository.config.ConnectionRepositoryConfig;
 
 @Repository
 
-public class UserRepository extends ConnectionRepository {
+public class UserRepository extends ConnectionRepositoryConfig {
 
 	public boolean updateUser(CustomerDTO request, int id) {
 		try {
@@ -24,7 +25,7 @@ public class UserRepository extends ConnectionRepository {
 			int rows = stmt.executeUpdate(); 
 			if (rows > 0) return true;
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} finally {
 			try {
 				super.closeConnection();

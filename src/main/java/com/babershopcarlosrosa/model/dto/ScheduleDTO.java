@@ -1,31 +1,49 @@
 package com.babershopcarlosrosa.model.dto;
 
-import java.sql.Date;
-
 public class ScheduleDTO {
 
-	private Date dateTime;
-	private String status;
-
-	public ScheduleDTO(Date dateTime, String status) {
-		this.dateTime = dateTime;
-		this.status = status;
+	private int customerId;
+	private int barberId;
+	private String date;
+	private String time;
+	
+	public ScheduleDTO(int customerId, int barberId, String date, String time) {
+		this.customerId = customerId;
+		this.barberId = barberId;
+		this.date = date;
+		this.time = time;
 	}
 
-	public String getStatus() {
-		return status;
+	public int getCustomerId() {
+		return customerId;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
-	public Date getDateTime() {
-		return dateTime;
+	public int getBarberId() {
+		return barberId;
 	}
 
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
+	public void setBarberId(int barberId) {
+		this.barberId = barberId;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
 	}
 	
 }

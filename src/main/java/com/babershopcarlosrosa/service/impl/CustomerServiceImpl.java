@@ -1,5 +1,6 @@
 package com.babershopcarlosrosa.service.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import com.babershopcarlosrosa.service.UserService;
 @Component
 public class CustomerServiceImpl implements UserService, RegisterService {
 
-	
 	@Autowired
 	private RegisterUserRepository registerUserRepository; 
 	
@@ -43,10 +43,7 @@ public class CustomerServiceImpl implements UserService, RegisterService {
 	}
 	
 	public boolean updateUser(CustomerDTO request, int id) { 
-		
 		return userRepository.updateUser(request, id);
-		
-		
 	}
 	
 }

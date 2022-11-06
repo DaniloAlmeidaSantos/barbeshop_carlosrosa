@@ -1,12 +1,5 @@
 package com.babershopcarlosrosa.Controller;
 
-import com.babershopcarlosrosa.model.dto.ApiResponseDTO;
-import com.babershopcarlosrosa.model.dto.AuthenticateRequestDTO;
-import com.babershopcarlosrosa.model.dto.CustomerDTO;
-import com.babershopcarlosrosa.service.AuthenticateService;
-import com.babershopcarlosrosa.service.RegisterService;
-import com.babershopcarlosrosa.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +7,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.babershopcarlosrosa.model.dto.ApiResponseDTO;
+import com.babershopcarlosrosa.model.dto.AuthenticateRequestDTO;
+import com.babershopcarlosrosa.model.dto.CustomerDTO;
+import com.babershopcarlosrosa.service.AuthenticateService;
+import com.babershopcarlosrosa.service.RegisterService;
 
 @RestController
 @RequestMapping("/barbershop")

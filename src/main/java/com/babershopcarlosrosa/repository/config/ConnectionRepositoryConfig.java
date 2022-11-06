@@ -1,10 +1,10 @@
-package com.babershopcarlosrosa.repository;
+package com.babershopcarlosrosa.repository.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public abstract class ConnectionRepository {
+public abstract class ConnectionRepositoryConfig {
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/BarbershopDB?useTimezone=true&serverTimezone=UTC";
 	private static final String USER = "root";
