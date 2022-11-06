@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.babershopcarlosrosa.model.dto.ApiResponseDTO;
@@ -13,39 +15,53 @@ import com.babershopcarlosrosa.model.dto.AuthenticateRequestDTO;
 import com.babershopcarlosrosa.model.dto.CustomerDTO;
 import com.babershopcarlosrosa.service.AuthenticateService;
 import com.babershopcarlosrosa.service.RegisterService;
+import com.babershopcarlosrosa.service.UserService;
 
 @RestController
 @RequestMapping("/barbershop")
 public class UserController {
 
-    @Autowired
-    private AuthenticateService authenticateService;
-    
-    @Autowired
-    private RegisterService registerService;
+	@Autowired
+	private AuthenticateService authenticateService;
 
-    @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<ApiResponseDTO> login(@RequestBody AuthenticateRequestDTO request) {
-    	
-        boolean isAuthenticated = authenticateService.authenticate(request);
+	@Autowired
+	private UserService userService;
 
-        if (isAuthenticated) {
-            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponseDTO("200", "User authenticated!"));
-        }
+	@PostMapping(value = "/user/login", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<ApiResponseDTO> login(@RequestBody AuthenticateRequestDTO request) {
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponseDTO("404", "User not found!"));
-    }
-    
-    @PostMapping(value = "/register", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<ApiResponseDTO> register(@RequestBody CustomerDTO customerDTO) {
-    	
-    	boolean isRegistered = registerService.register(customerDTO);
-    	
-    	if (isRegistered) {    		
-    		return ResponseEntity.status(HttpStatus.OK).body(new ApiResponseDTO("200", "User Created!"));
-    	}
-    	
-    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponseDTO("500", "Error to create user!"));
-    }
+		boolean isAuthenticated = authenticateService.authenticate(request);
+
+		if (isAuthenticated) {
+			return ResponseEntity.status(HttpStatus.OK).body(new ApiResponseDTO("200", "User authenticated!"));
+		}
+
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponseDTO("404", "User not found!"));
+	}
+
+	@PostMapping(value = "/user/register", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<ApiResponseDTO> register(@RequestBody CustomerDTO customerDTO) {
+
+		boolean isRegistered = userService.register(customerDTO);
+
+		if (isRegistered) {
+			return ResponseEntity.status(HttpStatus.OK).body(new ApiResponseDTO("200", "User Created!"));
+		}
+
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(new ApiResponseDTO("500", "Error to create user!"));
+	}
+
+	@PutMapping(value = "/user/update", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<ApiResponseDTO> update(@RequestBody CustomerDTO request, @RequestParam int userId) {
+		boolean isUpdated = userService.updateUser(request, userId);
+
+		if (isUpdated) {
+			return ResponseEntity.status(HttpStatus.OK).body(new ApiResponseDTO("200", "User updated!"));
+		}
+
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(new ApiResponseDTO("500", "Error to update user!"));
+	}
 
 }
