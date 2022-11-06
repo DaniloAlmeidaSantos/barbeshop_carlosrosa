@@ -10,14 +10,18 @@ import com.babershopcarlosrosa.model.UserModel;
 import com.babershopcarlosrosa.model.dto.CustomerDTO;
 import com.babershopcarlosrosa.model.dto.ServiceDTO;
 import com.babershopcarlosrosa.repository.RegisterUserRepository;
+import com.babershopcarlosrosa.repository.UserRepository;
 import com.babershopcarlosrosa.service.RegisterService;
 import com.babershopcarlosrosa.service.UserService;
 
 @Component
 public class CustomerServiceImpl implements UserService, RegisterService {
+
+	@Autowired
+	private RegisterUserRepository registerUserRepository; 
 	
 	@Autowired
-	private RegisterUserRepository userRepository;
+	private UserRepository userRepository;
 	
 	@Override
 	public void toSchedule(String date, List<ServiceDTO> services) {
@@ -30,11 +34,16 @@ public class CustomerServiceImpl implements UserService, RegisterService {
 	@Override
 	public boolean register(CustomerDTO customer) {
 		try {
-			return userRepository.register(customer);
+			return registerUserRepository.register(customer);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return false;
 	}
+	
+	public boolean updateUser(CustomerDTO request, int id) { 
+		return userRepository.updateUser(request, id);
+	}
+	
 }
