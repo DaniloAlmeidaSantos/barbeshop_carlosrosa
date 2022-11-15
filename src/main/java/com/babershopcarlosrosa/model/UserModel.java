@@ -4,7 +4,7 @@ import lombok.ToString;
 
 @ToString
 public abstract class UserModel {
-
+	
 	private String name;
 	private String password;
 	private String email;

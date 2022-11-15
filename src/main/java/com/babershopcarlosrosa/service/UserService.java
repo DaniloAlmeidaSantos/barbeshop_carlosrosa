@@ -2,10 +2,10 @@ package com.babershopcarlosrosa.service;
 
 import org.springframework.stereotype.Service;
 
-import com.babershopcarlosrosa.model.dto.CustomerDTO;
+import com.babershopcarlosrosa.model.UserModel;
 
 @Service
 public interface UserService {
-	boolean register(CustomerDTO customer);
-	boolean updateUser(CustomerDTO customer, int id);
+	boolean register(UserModel customer);
+	boolean updateUser(UserModel customer, int id);
 }

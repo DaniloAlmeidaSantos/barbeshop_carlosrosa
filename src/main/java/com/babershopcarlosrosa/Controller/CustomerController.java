@@ -1,6 +1,7 @@
 package com.babershopcarlosrosa.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,17 +15,17 @@ import com.babershopcarlosrosa.model.dto.ApiResponseDTO;
 import com.babershopcarlosrosa.model.dto.AuthenticateRequestDTO;
 import com.babershopcarlosrosa.model.dto.CustomerDTO;
 import com.babershopcarlosrosa.service.AuthenticateService;
-import com.babershopcarlosrosa.service.RegisterService;
 import com.babershopcarlosrosa.service.UserService;
 
 @RestController
 @RequestMapping("/barbershop")
-public class UserController {
+public class CustomerController {
 
 	@Autowired
 	private AuthenticateService authenticateService;
 
 	@Autowired
+	@Qualifier("CustomerService")
 	private UserService userService;
 
 	@PostMapping(value = "/user/login", consumes = "application/json", produces = "application/json")
@@ -41,7 +42,6 @@ public class UserController {
 
 	@PostMapping(value = "/user/register", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<ApiResponseDTO> register(@RequestBody CustomerDTO customerDTO) {
-
 		boolean isRegistered = userService.register(customerDTO);
 
 		if (isRegistered) {
