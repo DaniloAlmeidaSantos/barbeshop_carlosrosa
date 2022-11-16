@@ -17,7 +17,7 @@ public class UserRepository extends ConnectionRepositoryConfig {
 		try {
 			Connection connection = super.getConnection();
 			PreparedStatement stmt = connection.prepareStatement(
-					"UPDATE TB_USER SET USER_PASSWORD = ?, USER_EMAIL = ?, USER_PHONE = ? WHERE USER_ID = ?");
+					"UPDATE tb_user SET USER_PASSWORD = ?, USER_EMAIL = ?, USER_PHONE = ? WHERE USER_ID = ?");
 			stmt.setString(1, request.getPassword());
 			stmt.setString(2, request.getEmail());
 			stmt.setString(3,request.getPhone());
@@ -41,7 +41,7 @@ public class UserRepository extends ConnectionRepositoryConfig {
 		try {
 			Connection connection = super.getConnection();
 			
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO TB_USER (USER_CPF, USER_NAME, USER_EMAIL, USER_PASSWORD, USER_PHONE, USER_TYPE) VALUES (?, ?, ?, ?, ?, ?)");
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO tb_user (USER_CPF, USER_NAME, USER_EMAIL, USER_PASSWORD, USER_PHONE, USER_TYPE) VALUES (?, ?, ?, ?, ?, ?)");
 			stmt.setString(1, customerDTO.getCpf());
 			stmt.setString(2, customerDTO.getName());
 			stmt.setString(3, customerDTO.getEmail());

@@ -7,7 +7,6 @@ public class JobDTO {
 	private String jobName;
 	
 	public JobDTO(int jobId, int jobPrice, String jobName) {
-		super();
 		this.jobId = jobId;
 		this.jobPrice = jobPrice;
 		this.jobName = jobName;

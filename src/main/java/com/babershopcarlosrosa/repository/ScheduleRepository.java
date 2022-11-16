@@ -19,7 +19,7 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 			Connection connection = super.getConnection();
 
 			PreparedStatement stmt = connection
-					.prepareStatement("SELECT * FROM TB_SCHEDULING WHERE SKD_DATE = ? AND SKD_TIME = ?");
+					.prepareStatement("SELECT * FROM tb_scheduling WHERE SKD_DATE = ? AND SKD_TIME = ?");
 			stmt.setString(1, schedule.getDate());
 			stmt.setString(2, schedule.getTime());
 
@@ -47,7 +47,7 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 			Connection connection = super.getConnection();
 
 			PreparedStatement stmt = connection.prepareStatement(
-					"INSERT INTO TB_SCHEDULING (BARBER_ID, CUSTOMER_ID, SKD_DATE, SKD_TIME) VALUES (?, ?, ?, ?)");
+					"INSERT INTO tb_scheduling (BARBER_ID, CUSTOMER_ID, SKD_DATE, SKD_TIME) VALUES (?, ?, ?, ?)");
 			stmt.setInt(1, schedule.getBarberId());
 			stmt.setInt(2, schedule.getCustomerId());
 			stmt.setString(3, schedule.getDate());

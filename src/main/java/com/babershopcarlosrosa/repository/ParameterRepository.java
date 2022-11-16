@@ -17,7 +17,7 @@ public class ParameterRepository extends ConnectionRepositoryConfig {
 		try {
 			Connection connection = super.getConnection();
 
-			PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) AS COUNT_ROWS FROM TB_PARAMETERS");
+			PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) AS COUNT_ROWS FROM tb_parameters");
 
 			ResultSet resultSet = stmt.executeQuery();
 
@@ -47,7 +47,7 @@ public class ParameterRepository extends ConnectionRepositoryConfig {
 		try {
 			Connection connection = super.getConnection();
 			PreparedStatement stmt = connection.prepareStatement(
-					"SELECT PARAM_DAYS_WORK, PARAM_WORKLOAD_INIT, PARAM_WORKLOAD_FINISH, PARAM_NAME_PLACE FROM TB_PARAMETERS");
+					"SELECT PARAM_DAYS_WORK, PARAM_WORKLOAD_INIT, PARAM_WORKLOAD_FINISH, PARAM_NAME_PLACE FROM tb_parameters");
 			ResultSet rs = stmt.executeQuery();
 			
 			while (rs.next()) {
@@ -72,7 +72,7 @@ public class ParameterRepository extends ConnectionRepositoryConfig {
 			Connection connection = super.getConnection();
 
 			PreparedStatement stmt = connection.prepareStatement(
-					"UPDATE TB_PARAMETERS SET PARAM_DAYS_WORK = ?, PARAM_WORKLOAD_INIT = ?, PARAM_WORKLOAD_FINISH = ?, PARAM_NAME_PLACE = ?");
+					"UPDATE tb_parameters SET PARAM_DAYS_WORK = ?, PARAM_WORKLOAD_INIT = ?, PARAM_WORKLOAD_FINISH = ?, PARAM_NAME_PLACE = ?");
 			stmt.setString(1, workParametersDTO.getDaysWork());
 			stmt.setString(2, workParametersDTO.getHourInitWork());
 			stmt.setString(3, workParametersDTO.getHourEndWork());
@@ -102,7 +102,7 @@ public class ParameterRepository extends ConnectionRepositoryConfig {
 			Connection connection = super.getConnection();
 
 			PreparedStatement stmt = connection.prepareStatement(
-					"INSERT INTO TB_PARAMETERS (PARAM_DAYS_WORK, PARAM_WORKLOAD_INIT, PARAM_WORKLOAD_FINISH , PARAM_NAME_PLACE, PARAM_LAST_UPDATED) VALUES (?, ?, ?, ?, NOW())");
+					"INSERT INTO tb_parameters (PARAM_DAYS_WORK, PARAM_WORKLOAD_INIT, PARAM_WORKLOAD_FINISH , PARAM_NAME_PLACE, PARAM_LAST_UPDATED) VALUES (?, ?, ?, ?, NOW())");
 			stmt.setString(1, workParametersDTO.getDaysWork());
 			stmt.setString(2, workParametersDTO.getHourInitWork());
 			stmt.setString(3, workParametersDTO.getHourEndWork());

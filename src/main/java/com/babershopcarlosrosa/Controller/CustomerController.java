@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.babershopcarlosrosa.model.dto.ApiResponseDTO;
-import com.babershopcarlosrosa.model.dto.AuthenticateRequestDTO;
 import com.babershopcarlosrosa.model.dto.CustomerDTO;
-import com.babershopcarlosrosa.service.AuthenticateService;
 import com.babershopcarlosrosa.service.UserService;
 
 @RestController
@@ -22,23 +20,8 @@ import com.babershopcarlosrosa.service.UserService;
 public class CustomerController {
 
 	@Autowired
-	private AuthenticateService authenticateService;
-
-	@Autowired
 	@Qualifier("CustomerService")
 	private UserService userService;
-
-	@PostMapping(value = "/user/login", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<ApiResponseDTO> login(@RequestBody AuthenticateRequestDTO request) {
-
-		boolean isAuthenticated = authenticateService.authenticate(request);
-
-		if (isAuthenticated) {
-			return ResponseEntity.status(HttpStatus.OK).body(new ApiResponseDTO("200", "User authenticated!"));
-		}
-
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponseDTO("404", "User not found!"));
-	}
 
 	@PostMapping(value = "/user/register", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<ApiResponseDTO> register(@RequestBody CustomerDTO customerDTO) {
