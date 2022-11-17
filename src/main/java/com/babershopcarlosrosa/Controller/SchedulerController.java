@@ -1,5 +1,7 @@
 package com.babershopcarlosrosa.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.babershopcarlosrosa.model.dto.ApiResponseDTO;
 import com.babershopcarlosrosa.model.dto.CalendarResponseDTO;
 import com.babershopcarlosrosa.model.dto.ScheduleDTO;
+import com.babershopcarlosrosa.model.dto.ScheduledDTO;
 import com.babershopcarlosrosa.service.CalendarService;
 import com.babershopcarlosrosa.service.ScheduleService;
 
@@ -49,6 +52,18 @@ public class SchedulerController {
 		
 		return ResponseEntity.badRequest().body(new ApiResponseDTO("400", "Error to schedule service"));
 		
+	}
+	
+	@GetMapping(value = "/services/scheduled", produces = "application/json")
+	public ResponseEntity<List<ScheduledDTO>> getServicesScheduleds(@RequestParam long userId) {
+		
+		List<ScheduledDTO> scheduledList = scheduleService.getServicesScheduled(userId);
+		
+		if (scheduledList.size() > 0) {
+			return ResponseEntity.ok().body(scheduledList);
+		}
+		
+		return ResponseEntity.badRequest().body(null);
 	}
 	
 }

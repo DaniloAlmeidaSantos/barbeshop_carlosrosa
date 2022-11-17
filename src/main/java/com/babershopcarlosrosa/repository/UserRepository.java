@@ -2,6 +2,7 @@ package com.babershopcarlosrosa.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
@@ -52,6 +53,32 @@ public class UserRepository extends ConnectionRepositoryConfig {
 			int rowsAffected = stmt.executeUpdate();
 			
 			if(rowsAffected > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		} finally {
+			try {
+				super.closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean isAdministrator(long userId) {
+		try {
+			Connection connection = super.getConnection();
+			
+			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM tb_user WHERE USER_ID = ?");
+			stmt.setLong(1, userId);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
 				return true;
 			}
 		} catch (Exception e) {

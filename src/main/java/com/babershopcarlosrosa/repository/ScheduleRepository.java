@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.babershopcarlosrosa.model.dto.ScheduleDTO;
+import com.babershopcarlosrosa.model.dto.ScheduledDTO;
 import com.babershopcarlosrosa.repository.config.ConnectionRepositoryConfig;
 
 @Repository
@@ -69,5 +72,43 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 		}
 
 		return false;
+	}
+
+	public List<ScheduledDTO> getAllJobsScheduled() {
+		List<ScheduledDTO> scheduleds = new ArrayList<>();
+		
+		try {
+
+			Connection connection = super.getConnection();
+			
+			/* 
+			 * Precisa alterar isso aqui,
+			 * 1) Quando for adm, ele pode visualizar todos os agendamentos
+			 * 2) A tabela deve ser alterada no banco de dados para refletir a PK do serviço na FK dessa tabela
+			 * 3) Deve-se agrupar todos os serviços agendados para dia x, dia y, etc
+			 *  */
+			StringBuilder sb = new StringBuilder();
+			sb.append("SELECT * FROM tb_scheduling skd ");
+			sb.append(" JOIN tb_user us ON us.USER_ID = skd.BARBER_ID ");
+			sb.append("WHERE us.USER_ID = ?");
+
+			PreparedStatement stmt = connection.prepareStatement(sb.toString());
+
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		} finally {
+			try {
+				super.closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return scheduleds;
 	}
 }
