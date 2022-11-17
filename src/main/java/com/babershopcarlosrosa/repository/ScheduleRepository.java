@@ -76,26 +76,37 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 
 	public List<ScheduledDTO> getAllJobsScheduled() {
 		List<ScheduledDTO> scheduleds = new ArrayList<>();
-		
+		long newId = 0, lastId = 0;
 		try {
 
 			Connection connection = super.getConnection();
 			
-			/* 
-			 * Precisa alterar isso aqui,
-			 * 1) Quando for adm, ele pode visualizar todos os agendamentos
-			 * 2) A tabela deve ser alterada no banco de dados para refletir a PK do serviço na FK dessa tabela
-			 * 3) Deve-se agrupar todos os serviços agendados para dia x, dia y, etc
-			 *  */
 			StringBuilder sb = new StringBuilder();
-			sb.append("SELECT * FROM tb_scheduling skd ");
-			sb.append(" JOIN tb_user us ON us.USER_ID = skd.BARBER_ID ");
-			sb.append("WHERE us.USER_ID = ?");
+			sb.append("SELECT ");
+			sb.append(" skd.SKD_ID, ");
+			sb.append(" skd.SKD_DATE, ");
+			sb.append(" skd.SKD_TIME, ");
+			sb.append(" us.USER_NAME, ");
+			sb.append(" skd.CUSTOMER_ID, ");
+			sb.append(" serv.SERVICE_ID, ");
+			sb.append(" serv.SERVICE_NAME, ");
+			sb.append(" serv.SERVICE_PRICE, ");
+			sb.append("FROM tb_scheduling skd ");
+			sb.append(" JOIN tb_user us ON skd.CUSTOMER_ID = us.USER_ID ");
+			sb.append(" JOIN tb_service serv ON skd.SERVICE_ID = serv.SERVICE_ID ");
+			sb.append("WHERE skd.SKD_DATE = ?, skd.SKD_TIME = ?, us.USER_ID = ?");
 
 			PreparedStatement stmt = connection.prepareStatement(sb.toString());
 
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
+				newId = rs.getLong("skd.CUSTOMER_ID");
+				
+				if (newId != lastId) {
+					lastId = newId;
+					
+					
+				}
 				
 			}
 		} catch (Exception e) {
