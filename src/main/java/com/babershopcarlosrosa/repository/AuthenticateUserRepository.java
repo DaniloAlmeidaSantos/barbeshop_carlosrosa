@@ -11,6 +11,9 @@ import com.babershopcarlosrosa.model.dto.AuthenticateRequestDTO;
 import com.babershopcarlosrosa.model.dto.AuthenticateResponseDTO;
 import com.babershopcarlosrosa.repository.config.ConnectionRepositoryConfig;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 public class AuthenticateUserRepository extends ConnectionRepositoryConfig {
 
@@ -25,14 +28,16 @@ public class AuthenticateUserRepository extends ConnectionRepositoryConfig {
 			
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
+				log.info("[ OUT - AUTHENTICATE] User Authenticated");
 				return new AuthenticateResponseDTO(rs.getLong("USER_ID"), rs.getString("USER_TYPE"));
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			log.error("[ OUT - AUTHENTICATE ] Error: {} ", e);
 		} finally {
 			try {
 				super.closeConnection();
 			} catch (SQLException e) {
+				log.error("[ OUT - AUTHENTICATE ] Error: {} ", e.getMessage());
 				e.printStackTrace();
 			}
 		}

@@ -19,7 +19,7 @@ public class CustomerServiceImpl implements UserService {
 	public boolean register(UserModel customer) {
 		try {
 			CustomerDTO customerDTO = (CustomerDTO) customer;
-			return userRepository.register(customerDTO);
+			return userRepository.registerCustomer(customerDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -27,9 +27,8 @@ public class CustomerServiceImpl implements UserService {
 		return false;
 	}
 	
-	public boolean updateUser(UserModel request, int id) { 
-		CustomerDTO customerDTO = (CustomerDTO) request;
-		return userRepository.updateUser(customerDTO, id);
+	public boolean updateUser(UserModel request, int id) {
+		return userRepository.updateUser(request, id);
 	}
 	
 }

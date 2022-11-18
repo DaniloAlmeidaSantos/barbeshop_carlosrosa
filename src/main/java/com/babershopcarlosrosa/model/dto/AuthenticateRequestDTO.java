@@ -1,5 +1,8 @@
 package com.babershopcarlosrosa.model.dto;
 
+import lombok.ToString;
+
+@ToString
 public class AuthenticateRequestDTO {
 
     private String email;

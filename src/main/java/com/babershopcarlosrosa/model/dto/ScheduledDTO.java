@@ -1,33 +1,34 @@
 package com.babershopcarlosrosa.model.dto;
 
-import java.util.List;
-
 public class ScheduledDTO {
 
-	private long id;
+	private String indentifications;
 	private String date;
 	private String time;
-	private String barber;
-	private List<JobDTO> services;
+	private String jobIndentification;
+	private String jobs;
+	private double totalPrice;
 
 	public ScheduledDTO() {
 		// Empty constructor
 	}
 
-	public ScheduledDTO(long id, String date, String time, String barber, List<JobDTO> services) {
-		this.id = id;
+	public ScheduledDTO(String indentifications, String date, String time, String jobIndentification,
+			String jobs, double totalPrice) {
+		this.indentifications = indentifications;
 		this.date = date;
 		this.time = time;
-		this.barber = barber;
-		this.services = services;
+		this.jobIndentification = jobIndentification;
+		this.jobs = jobs;
+		this.totalPrice = totalPrice;
 	}
 
-	public long getId() {
-		return id;
+	public String getIndentifications() {
+		return indentifications;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setIndentifications(String indentifications) {
+		this.indentifications = indentifications;
 	}
 
 	public String getDate() {
@@ -46,26 +47,27 @@ public class ScheduledDTO {
 		this.time = time;
 	}
 
-	public String getBarber() {
-		return barber;
+	public String getJobIndentification() {
+		return jobIndentification;
 	}
 
-	public void setBarber(String barber) {
-		this.barber = barber;
+	public void setJobIndentification(String jobIndentification) {
+		this.jobIndentification = jobIndentification;
 	}
 
-	public List<JobDTO> getServices() {
-		return services;
+	public String getJobs() {
+		return jobs;
 	}
 
-	public void setServices(List<JobDTO> services) {
-		this.services = services;
+	public void setJobs(String jobs) {
+		this.jobs = jobs;
 	}
 
-	@Override
-	public String toString() {
-		return "ScheduledDTO [id=" + id + ", date=" + date + ", time=" + time + ", barber=" + barber + ", services="
-				+ services + "]";
+	public double getTotalPrice() {
+		return totalPrice;
 	}
 
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 }

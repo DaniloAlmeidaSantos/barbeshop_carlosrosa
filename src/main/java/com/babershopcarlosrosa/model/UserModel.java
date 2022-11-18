@@ -4,26 +4,26 @@ import lombok.ToString;
 
 @ToString
 public abstract class UserModel {
-	
+
 	private String name;
 	private String password;
 	private String email;
 	private String userType;
-
+	private String phone;
 
 	public UserModel() {
-
+		// Empty constructor
 	}
-
-	public UserModel(String name, String userType, String email, String password) {
+	
+	public UserModel(String name, String password, String email, String userType, String phone) {
 		this.name = name;
-		this.userType = userType;
-		this.email = email;
 		this.password = password;
+		this.email = email;
+		this.userType = userType;
+		this.phone = phone;
 	}
 
-	public abstract boolean actions();
-
+	
 	public String getName() {
 		return name;
 	}
@@ -32,12 +32,12 @@ public abstract class UserModel {
 		this.name = name;
 	}
 
-	public String getUserType() {
-		return userType;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUserType(String userType) {
-		this.userType = userType;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {
@@ -48,13 +48,19 @@ public abstract class UserModel {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getUserType() {
+		return userType;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
-	
 
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 }

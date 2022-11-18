@@ -10,6 +10,9 @@ import com.babershopcarlosrosa.model.dto.ScheduledDTO;
 import com.babershopcarlosrosa.repository.ScheduleRepository;
 import com.babershopcarlosrosa.service.ScheduleService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Component
 public class ScheduleServiceImpl implements ScheduleService {
     
@@ -34,16 +37,15 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	@Override
 	public List<ScheduledDTO> getServicesScheduled(long userId){
-		
 		boolean isAdmin = administratorServiceImpl.isAdministrator(userId);
 		
 		if (isAdmin) {
-			
+			log.info("[ INPUT - GET SERVICES SCHEDULED ] Searching scheduling services to Administrator");
+			return skdRepository.getJobsScheduledToAdmin();
 		} else {
-			
+			log.info("[ INPUT - GET SERVICES SCHEDULED ] Searching scheduling services to Customer");
+			return skdRepository.getJobsScheduledToCustomer(userId);
 		}
-		
-		return null;
 	}
     
     
