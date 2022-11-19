@@ -163,4 +163,27 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 
 		return scheduleds;
 	}
+
+	public boolean updateStatus(int id) {
+		try {
+			Connection connection = super.getConnection();
+			PreparedStatement stmt = connection.prepareStatement("UPDATE tb_scheduling SET SKD_STATUS = 'CANCELADO' WHERE SKD_ID = ?");
+			stmt.setInt(1, id);
+
+			int rows = stmt.executeUpdate();
+
+			if (rows > 0)
+				return true;
+		} catch (Exception e) {
+			log.error("[ OUT -  UPDATE STATUS SCHEDULED ] Error in repository: {} ", e);
+		} finally {
+			try {
+				super.closeConnection();
+			} catch (SQLException e) {
+				log.error("[ OUT - UPDATE STATUS SCHEDULED ] Error to close connection: {} ", e);
+			}
+		}
+
+		return false;
+	}
 }

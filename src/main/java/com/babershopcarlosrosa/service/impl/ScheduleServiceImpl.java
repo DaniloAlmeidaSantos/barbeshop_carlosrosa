@@ -47,6 +47,24 @@ public class ScheduleServiceImpl implements ScheduleService {
 			return skdRepository.getJobsScheduledToCustomer(userId);
 		}
 	}
+
+	@Override
+	public boolean updateStatus(String indentifications) {
+		
+		String[] indentifys = indentifications.split(",");
+		
+		for (String indentify : indentifys) {
+			
+			boolean isUpdated = skdRepository.updateStatus(Integer.parseInt(indentify));
+			
+			if (!isUpdated) {
+				return false;
+			}
+			
+		}
+		
+		return true;
+	}
     
     
 }

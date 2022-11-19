@@ -11,4 +11,5 @@ import com.babershopcarlosrosa.model.dto.ScheduledDTO;
 public interface ScheduleService {
     boolean insertSchedule(ScheduleDTO schedule);
     List<ScheduledDTO> getServicesScheduled(long userId);
+    boolean updateStatus(String indentifications);
 }

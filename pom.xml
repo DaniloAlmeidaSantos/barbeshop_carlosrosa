@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.babershopcarlosrosa</groupId>
 	<artifactId>babershop_carlosrosa</artifactId>
-	<version>1.1.0</version>
+	<version>1.1.1</version>
 	<name>Babershop</name>
 	<description>Project babershop application - Spring Boot</description>
 	<properties>

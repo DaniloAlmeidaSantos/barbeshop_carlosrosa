@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,4 +67,15 @@ public class SchedulerController {
 		return ResponseEntity.badRequest().body(null);
 	}
 	
+	@PutMapping(value="/services/scheduled", produces = "application/json")
+	public ResponseEntity<ApiResponseDTO> updateStatus(@RequestParam String indentifications) {
+		
+		boolean isUpdated = scheduleService.updateStatus(indentifications);
+		
+		if (isUpdated) {
+			return ResponseEntity.ok(new ApiResponseDTO("200", "Status success updated to canceled"));
+		}
+		
+		return ResponseEntity.badRequest().body(new ApiResponseDTO("400", "Error to update status in scheduled service"));
+	}
 }
