@@ -96,7 +96,7 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 			sb.append("FROM tb_scheduling skd ");
 			sb.append(" 	JOIN tb_user us ON skd.CUSTOMER_ID = us.USER_ID ");
 			sb.append(" 	JOIN tb_service serv ON skd.SERVICE_ID = serv.SERVICE_ID ");
-			sb.append("GROUP BY skd.SKD_DATE");
+			sb.append("GROUP BY skd.SKD_DATE, skd.CUSTOMER_ID, skd.SKD_TIME");
 
 			PreparedStatement stmt = connection.prepareStatement(sb.toString());
 
@@ -140,7 +140,7 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 			sb.append(" 	JOIN tb_user us ON skd.CUSTOMER_ID = us.USER_ID ");
 			sb.append(" 	JOIN tb_service serv ON skd.SERVICE_ID = serv.SERVICE_ID ");
 			sb.append("WHERE us.USER_ID = ? ");
-			sb.append(" 	GROUP BY skd.SKD_DATE");
+			sb.append(" 	GROUP BY skd.SKD_DATE, skd.CUSTOMER_ID, skd.SKD_TIME");
 
 			PreparedStatement stmt = connection.prepareStatement(sb.toString());
 			stmt.setLong(1, userId);
