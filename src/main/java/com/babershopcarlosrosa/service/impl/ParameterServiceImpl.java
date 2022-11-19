@@ -29,4 +29,8 @@ public class ParameterServiceImpl implements ParameterService {
 		}		
 		return false;
 	}
+
+	public ParameterDTO getParameters() {
+		return parameterRepository.getParameters();
+	}
 }
