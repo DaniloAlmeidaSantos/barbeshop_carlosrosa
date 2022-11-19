@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.babershopcarlosrosa.model.UserModel;
 import com.babershopcarlosrosa.model.dto.ApiResponseDTO;
-import com.babershopcarlosrosa.model.dto.CustomerDTO;
 import com.babershopcarlosrosa.service.UserService;
 
 @RestController

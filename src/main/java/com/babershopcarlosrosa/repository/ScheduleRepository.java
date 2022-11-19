@@ -91,6 +91,7 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 			sb.append(" 	skd.CUSTOMER_ID AS CLIENTE_ID, ");
 			sb.append(" 	GROUP_CONCAT(serv.SERVICE_ID) AS ID_SERVICOS, ");
 			sb.append(" 	GROUP_CONCAT(serv.SERVICE_NAME) AS SERVICOS, ");
+			sb.append("		skd.SKD_STATUS AS STATUS, ");
 			sb.append(" 	SUM(serv.SERVICE_PRICE) AS TOTAL ");
 			sb.append("FROM tb_scheduling skd ");
 			sb.append(" 	JOIN tb_user us ON skd.CUSTOMER_ID = us.USER_ID ");
@@ -103,7 +104,7 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 			while (rs.next()) {
 				scheduleds.add(new ScheduledDTO(rs.getString("INDENTIFICACOES"), rs.getString("DATA_AGENDAMENTO"),
 						rs.getString("HORARIO_AGENDAMENTO"), rs.getString("ID_SERVICOS"), rs.getString("SERVICOS"),
-						rs.getDouble("TOTAL")));
+						rs.getString("STATUS"), rs.getDouble("TOTAL")));
 			}
 		} catch (Exception e) {
 			log.error("[ OUT - GET JOBS SCHEDULED ] Error: {} ", e);
@@ -133,6 +134,7 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 			sb.append(" 	skd.CUSTOMER_ID AS CLIENTE_ID, ");
 			sb.append(" 	GROUP_CONCAT(serv.SERVICE_ID) AS ID_SERVICOS, ");
 			sb.append(" 	GROUP_CONCAT(serv.SERVICE_NAME) AS SERVICOS, ");
+			sb.append("		skd.SKD_STATUS AS STATUS, ");
 			sb.append(" 	SUM(serv.SERVICE_PRICE) AS TOTAL ");
 			sb.append("FROM tb_scheduling skd ");
 			sb.append(" 	JOIN tb_user us ON skd.CUSTOMER_ID = us.USER_ID ");
@@ -147,7 +149,7 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 			while (rs.next()) {
 				scheduleds.add(new ScheduledDTO(rs.getString("INDENTIFICACOES"), rs.getString("DATA_AGENDAMENTO"),
 						rs.getString("HORARIO_AGENDAMENTO"), rs.getString("ID_SERVICOS"), rs.getString("SERVICOS"),
-						rs.getDouble("TOTAL")));
+						rs.getString("STATUS"), rs.getDouble("TOTAL")));
 			}
 
 		} catch (Exception e) {
@@ -167,7 +169,8 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 	public boolean updateStatus(int id) {
 		try {
 			Connection connection = super.getConnection();
-			PreparedStatement stmt = connection.prepareStatement("UPDATE tb_scheduling SET SKD_STATUS = 'CANCELADO' WHERE SKD_ID = ?");
+			PreparedStatement stmt = connection
+					.prepareStatement("UPDATE tb_scheduling SET SKD_STATUS = 'CANCELADO' WHERE SKD_ID = ?");
 			stmt.setInt(1, id);
 
 			int rows = stmt.executeUpdate();

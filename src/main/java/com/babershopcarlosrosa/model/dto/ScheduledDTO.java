@@ -7,19 +7,21 @@ public class ScheduledDTO {
 	private String time;
 	private String jobIndentification;
 	private String jobs;
+	private String status;
 	private double totalPrice;
 
 	public ScheduledDTO() {
 		// Empty constructor
 	}
 
-	public ScheduledDTO(String indentifications, String date, String time, String jobIndentification,
-			String jobs, double totalPrice) {
+	public ScheduledDTO(String indentifications, String date, String time, String jobIndentification, String jobs,
+			String status, double totalPrice) {
 		this.indentifications = indentifications;
 		this.date = date;
 		this.time = time;
 		this.jobIndentification = jobIndentification;
 		this.jobs = jobs;
+		this.status = status;
 		this.totalPrice = totalPrice;
 	}
 
@@ -63,6 +65,14 @@ public class ScheduledDTO {
 		this.jobs = jobs;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public double getTotalPrice() {
 		return totalPrice;
 	}
@@ -70,4 +80,5 @@ public class ScheduledDTO {
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+
 }
