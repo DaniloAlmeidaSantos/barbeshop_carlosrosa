@@ -1,15 +1,24 @@
 package com.babershopcarlosrosa.model.dto;
 
+import lombok.ToString;
+
+@ToString
 public class ScheduleDTO {
 
 	private int customerId;
 	private int barberId;
+	private String servicesId;
 	private String date;
 	private String time;
-	
-	public ScheduleDTO(int customerId, int barberId, String date, String time) {
+
+	public ScheduleDTO() {
+		// Empty Constructor
+	}
+
+	public ScheduleDTO(int customerId, int barberId, String servicesId, String date, String time) {
 		this.customerId = customerId;
 		this.barberId = barberId;
+		this.servicesId = servicesId;
 		this.date = date;
 		this.time = time;
 	}
@@ -30,6 +39,14 @@ public class ScheduleDTO {
 		this.barberId = barberId;
 	}
 
+	public String getServicesId() {
+		return servicesId;
+	}
+
+	public void setServicesId(String servicesId) {
+		this.servicesId = servicesId;
+	}
+
 	public String getDate() {
 		return date;
 	}
@@ -45,5 +62,5 @@ public class ScheduleDTO {
 	public void setTime(String time) {
 		this.time = time;
 	}
-	
+
 }

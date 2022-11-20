@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,11 +55,12 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 			Connection connection = super.getConnection();
 
 			PreparedStatement stmt = connection.prepareStatement(
-					"INSERT INTO tb_scheduling (BARBER_ID, CUSTOMER_ID, SKD_DATE, SKD_TIME) VALUES (?, ?, ?, ?)");
+					"INSERT INTO tb_scheduling (BARBER_ID, CUSTOMER_ID, SKD_DATE, SKD_TIME, SERVICE_ID) VALUES (?, ?, ?, ?, ?)");
 			stmt.setInt(1, schedule.getBarberId());
 			stmt.setInt(2, schedule.getCustomerId());
 			stmt.setString(3, schedule.getDate());
 			stmt.setString(4, schedule.getTime());
+			stmt.setLong(5, Long.parseLong(schedule.getServicesId()));
 
 			int rowsAffected = stmt.executeUpdate();
 			if (rowsAffected > 0) {
@@ -101,6 +103,7 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 			PreparedStatement stmt = connection.prepareStatement(sb.toString());
 
 			ResultSet rs = stmt.executeQuery();
+
 			while (rs.next()) {
 				scheduleds.add(new ScheduledDTO(rs.getString("INDENTIFICACOES"), rs.getString("DATA_AGENDAMENTO"),
 						rs.getString("HORARIO_AGENDAMENTO"), rs.getString("ID_SERVICOS"), rs.getString("SERVICOS"),

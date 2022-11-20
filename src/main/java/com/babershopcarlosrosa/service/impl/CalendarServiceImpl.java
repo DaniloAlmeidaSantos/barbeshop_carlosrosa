@@ -68,7 +68,7 @@ public class CalendarServiceImpl implements CalendarService {
 
 				hourInit = calendar.getTime();
 				String hourDisponible = String.valueOf(calendar.get(Calendar.HOUR_OF_DAY)) + ":00";
-				if (!scheduleRepository.searchByDateTime(new ScheduleDTO(0, 0, date, hourDisponible))) {
+				if (!scheduleRepository.searchByDateTime(new ScheduleDTO(0, 0, "", date, hourDisponible))) {
 					hours.add(hourDisponible);
 				}
 				count++;

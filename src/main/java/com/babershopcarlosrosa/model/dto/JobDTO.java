@@ -1,5 +1,8 @@
 package com.babershopcarlosrosa.model.dto;
 
+import lombok.ToString;
+
+@ToString
 public class JobDTO {
 	
 	private int jobId;

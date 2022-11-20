@@ -12,6 +12,9 @@ import org.springframework.stereotype.Repository;
 import com.babershopcarlosrosa.model.dto.JobDTO;
 import com.babershopcarlosrosa.repository.config.ConnectionRepositoryConfig;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 public class JobRepository extends ConnectionRepositoryConfig {
 
@@ -27,10 +30,17 @@ public class JobRepository extends ConnectionRepositoryConfig {
 						new JobDTO(rs.getInt("SERVICE_ID"), rs.getInt("SERVICE_PRICE"), rs.getString("SERVICE_NAME")));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("[ OUT - CREATE SERVICE ] Error in get jobs repository: {} ", e);
+		} finally {
+			try {
+				super.closeConnection();
+			} catch (SQLException e) {
+				log.error("[ OUT - CREATE SERVICE ] Error to close connection in get services repository: {} ", e);
+			}
 		}
+		
+		log.info("[ OUT - GET JOBS ] Finshed search jobs: {} ", listJobs.toString());
 		return listJobs;
-
 	}
 
 	public boolean updateJob(JobDTO requestJob) {
@@ -50,13 +60,12 @@ public class JobRepository extends ConnectionRepositoryConfig {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+			log.error("[ OUT - CREATE SERVICE ] Error in update job repository: {} ", e);
 		} finally {
 			try {
 				super.closeConnection();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				log.error("[ OUT - CREATE SERVICE ] Error to close connection in update service repository: {} ", e);
 			}
 		}
 		return false;
@@ -71,16 +80,16 @@ public class JobRepository extends ConnectionRepositoryConfig {
 			stmt.setDouble(2, requestJob.getJobPrice());
 			int rowsAffected = stmt.executeUpdate();
 			if (rowsAffected > 0) {
+				log.info("[ OUT - CREATE SERVICE ] Service success created");
 				return true;
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+			log.error("[ OUT - CREATE SERVICE ] Error in create job repository: {} ", e);
 		} finally {
 			try {
 				super.closeConnection();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				log.error("[ OUT - CREATE SERVICE ] Error to close connection in create service repository: {} ", e);
 			}
 		}
 		return false;

@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 import com.babershopcarlosrosa.model.dto.ParameterDTO;
 import com.babershopcarlosrosa.repository.config.ConnectionRepositoryConfig;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 public class ParameterRepository extends ConnectionRepositoryConfig {
 
@@ -31,13 +34,12 @@ public class ParameterRepository extends ConnectionRepositoryConfig {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+			log.error("[ OUT - CREATE PARAMETERS ] Error to verify exist parameters: {} ", e);
 		} finally {
 			try {
 				super.closeConnection();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				log.error("[ OUT - CLOSE CONNECTION ERROR ] Error to close connection");
 			}
 		}
 		return false;
@@ -49,20 +51,23 @@ public class ParameterRepository extends ConnectionRepositoryConfig {
 			PreparedStatement stmt = connection.prepareStatement(
 					"SELECT PARAM_DAYS_WORK, PARAM_WORKLOAD_INIT, PARAM_WORKLOAD_FINISH, PARAM_NAME_PLACE FROM tb_parameters");
 			ResultSet rs = stmt.executeQuery();
-			
+
 			while (rs.next()) {
-				return new ParameterDTO(
-						rs.getString("PARAM_DAYS_WORK"),
-						rs.getString("PARAM_WORKLOAD_INIT"), 
-						rs.getString("PARAM_WORKLOAD_FINISH"), 
-						rs.getString("PARAM_NAME_PLACE")
-					);
+				return new ParameterDTO(rs.getString("PARAM_DAYS_WORK"), rs.getString("PARAM_WORKLOAD_INIT"),
+						rs.getString("PARAM_WORKLOAD_FINISH"), rs.getString("PARAM_NAME_PLACE"));
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("[ OUT - CREATE PARAMETERS ] Error to get parameters: {} ", e);
+		} finally {
+			try {
+				super.closeConnection();
+			} catch (SQLException e) {
+				log.error("[ OUT - CLOSE CONNECTION ERROR ] Error to close connection");
+
+			}
 		}
-		
+
 		return null;
 
 	}
@@ -84,13 +89,12 @@ public class ParameterRepository extends ConnectionRepositoryConfig {
 				return true;
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+			log.error("[ OUT - CREATE PARAMETERS ] Error to update parameters: {} ", e);
 		} finally {
 			try {
 				super.closeConnection();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				log.error("[ OUT - CLOSE CONNECTION ERROR ] Error to close connection");
 			}
 		}
 
@@ -113,13 +117,12 @@ public class ParameterRepository extends ConnectionRepositoryConfig {
 				return true;
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+			log.error("[ OUT - CREATE PARAMETERS ] Error to create parameters: {} ", e);
 		} finally {
 			try {
 				super.closeConnection();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				log.error("[ OUT - CLOSE CONNECTION ERROR ] Error to close connection");
 			}
 		}
 

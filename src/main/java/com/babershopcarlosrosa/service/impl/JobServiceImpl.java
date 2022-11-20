@@ -9,6 +9,9 @@ import com.babershopcarlosrosa.model.dto.JobDTO;
 import com.babershopcarlosrosa.repository.JobRepository;
 import com.babershopcarlosrosa.service.JobService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Component
 public class JobServiceImpl implements JobService {
 	
@@ -16,6 +19,7 @@ public class JobServiceImpl implements JobService {
 	private JobRepository jobRepository;
 	
 	public boolean insertJob(JobDTO requestJob) {
+		log.info("[ INPUT - CREATE SERVICE ] Creating service, request received: {} ", requestJob);
 		return jobRepository.insertJob(requestJob);
 	}
 	
