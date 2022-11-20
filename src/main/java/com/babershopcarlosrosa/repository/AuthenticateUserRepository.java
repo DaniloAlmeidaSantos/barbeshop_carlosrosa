@@ -38,7 +38,6 @@ public class AuthenticateUserRepository extends ConnectionRepositoryConfig {
 				super.closeConnection();
 			} catch (SQLException e) {
 				log.error("[ OUT - AUTHENTICATE ] Error: {} ", e.getMessage());
-				e.printStackTrace();
 			}
 		}
 

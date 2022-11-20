@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +72,7 @@ public class ScheduleRepository extends ConnectionRepositoryConfig {
 			try {
 				super.closeConnection();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				log.error("[ OUT - GET JOBS SCHEDULED ] Error: {} ", e);
 			}
 		}
 

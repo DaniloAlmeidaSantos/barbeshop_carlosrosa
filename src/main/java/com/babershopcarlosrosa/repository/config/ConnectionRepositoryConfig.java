@@ -10,11 +10,12 @@ public abstract class ConnectionRepositoryConfig {
 	private static final String USER = "dbowner";
 	private static final String PASSWORD = "Sen@c2022";
 	private static Connection connection = null;
-
+	
 	protected Connection getConnection() {
 		try {
 			Class.forName(DRIVER);
 			connection = DriverManager.getConnection(URL, USER, PASSWORD);
+			connection.beginRequest();
 			return connection;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -26,7 +27,8 @@ public abstract class ConnectionRepositoryConfig {
 	}
 	
 	protected void closeConnection() throws SQLException {
-		if (connection != null) {			
+		if (connection != null) {
+			connection.endRequest();
 			connection.close();
 		}
 	}

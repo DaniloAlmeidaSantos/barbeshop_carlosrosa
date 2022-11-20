@@ -58,7 +58,7 @@ public class ParameterRepository extends ConnectionRepositoryConfig {
 			}
 
 		} catch (Exception e) {
-			log.error("[ OUT - CREATE PARAMETERS ] Error to get parameters: {} ", e);
+			log.error("[ OUT - GET PARAMETERS ] Error to get parameters: {} ", e);
 		} finally {
 			try {
 				super.closeConnection();
