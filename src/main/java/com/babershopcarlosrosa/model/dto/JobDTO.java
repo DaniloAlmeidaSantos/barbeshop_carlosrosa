@@ -4,11 +4,15 @@ import lombok.ToString;
 
 @ToString
 public class JobDTO {
-	
+
 	private int jobId;
 	private int jobPrice;
 	private String jobName;
-	
+
+	public JobDTO() {
+		// Empty Constructor
+	}
+
 	public JobDTO(int jobId, int jobPrice, String jobName) {
 		this.jobId = jobId;
 		this.jobPrice = jobPrice;
@@ -38,4 +42,5 @@ public class JobDTO {
 	public void setJobName(String jobName) {
 		this.jobName = jobName;
 	}
+
 }
