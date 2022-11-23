@@ -34,8 +34,7 @@ public class AdministratorServiceImpl implements UserService {
 	
 	public boolean updateUser(UserModel request, int id) { 
 		log.info("[ INPUT - ADMINISTRATOR ] Updating user");
-		CustomerDTO customerDTO = (CustomerDTO) request;
-		return userRepository.updateUser(customerDTO, id);
+		return userRepository.updateUser(request, id);
 	}
 	
 	public boolean isAdministrator(long userId) {
