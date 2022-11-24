@@ -9,6 +9,6 @@ O serviço tem como objetivo possiblitar que o cliente da barbearia Carlos Rosa 
 - Para realizar requisições para a API foi utilizado o POSTMAN, mas pode ser utilizado a ferramenta de sua prefência
 
 ## Modos de usar
-- Caso tenha alguma aplicação na porta 8080, altere a porta da aplicação para alguma qualquer no arquivo application.properties na pasta src/main/resources parâmetro server.port=8080
+- Caso tenha alguma aplicação na porta 8080, altere a porta da aplicação para alguma qualquer no arquivo application.properties na pasta src/main/resources parâmetro ``server.port=<PORTA_DESEJADA>``
 - Não é utilizado autenticação ou tokens para fazer requisições para a API
 - Caso utilizar o banco de dados local, deve ser alterado no código as credenciais de acesso ao banco de dados no  arquivo **src/main/java/com/babershopcarlosrosa/repository/config/ConnectionRepositoryConfig.java**
