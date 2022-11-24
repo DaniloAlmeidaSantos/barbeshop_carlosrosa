@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.babershopcarlosrosa.model.UserModel;
-import com.babershopcarlosrosa.model.dto.CustomerDTO;
 import com.babershopcarlosrosa.repository.UserRepository;
 import com.babershopcarlosrosa.service.UserService;
 

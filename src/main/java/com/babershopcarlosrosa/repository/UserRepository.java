@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import com.babershopcarlosrosa.model.UserModel;
 import com.babershopcarlosrosa.model.dto.CustomerDTO;
-import com.babershopcarlosrosa.repository.config.ConnectionRepositoryConfig;
+import com.babershopcarlosrosa.repository.config.ConnectionFactory;
 
 @Repository
-public class UserRepository extends ConnectionRepositoryConfig {
+public class UserRepository extends ConnectionFactory {
 
 	public boolean updateUser(UserModel request, int id) {
 		try {

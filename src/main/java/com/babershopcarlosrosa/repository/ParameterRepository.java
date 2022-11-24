@@ -8,13 +8,13 @@ import java.sql.SQLException;
 import org.springframework.stereotype.Repository;
 
 import com.babershopcarlosrosa.model.dto.ParameterDTO;
-import com.babershopcarlosrosa.repository.config.ConnectionRepositoryConfig;
+import com.babershopcarlosrosa.repository.config.ConnectionFactory;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Repository
-public class ParameterRepository extends ConnectionRepositoryConfig {
+public class ParameterRepository extends ConnectionFactory {
 
 	public boolean verifyExistParameter(ParameterDTO workParameterDTO) {
 		try {

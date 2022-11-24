@@ -11,13 +11,13 @@ import org.springframework.stereotype.Repository;
 
 import com.babershopcarlosrosa.model.dto.ScheduleDTO;
 import com.babershopcarlosrosa.model.dto.ScheduledDTO;
-import com.babershopcarlosrosa.repository.config.ConnectionRepositoryConfig;
+import com.babershopcarlosrosa.repository.config.ConnectionFactory;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Repository
-public class ScheduleRepository extends ConnectionRepositoryConfig {
+public class ScheduleRepository extends ConnectionFactory {
 
 	public boolean searchByDateTime(ScheduleDTO schedule) {
 		try {

@@ -10,13 +10,13 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.babershopcarlosrosa.model.dto.JobDTO;
-import com.babershopcarlosrosa.repository.config.ConnectionRepositoryConfig;
+import com.babershopcarlosrosa.repository.config.ConnectionFactory;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Repository
-public class JobRepository extends ConnectionRepositoryConfig {
+public class JobRepository extends ConnectionFactory {
 
 	public List<JobDTO> getJobs() {
 		List<JobDTO> listJobs = new ArrayList<>();

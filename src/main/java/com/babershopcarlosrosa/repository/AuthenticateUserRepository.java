@@ -9,13 +9,13 @@ import org.springframework.stereotype.Repository;
 
 import com.babershopcarlosrosa.model.dto.AuthenticateRequestDTO;
 import com.babershopcarlosrosa.model.dto.AuthenticateResponseDTO;
-import com.babershopcarlosrosa.repository.config.ConnectionRepositoryConfig;
+import com.babershopcarlosrosa.repository.config.ConnectionFactory;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Repository
-public class AuthenticateUserRepository extends ConnectionRepositoryConfig {
+public class AuthenticateUserRepository extends ConnectionFactory {
 
 	public AuthenticateResponseDTO authenticate(AuthenticateRequestDTO request) {
 
