@@ -3,7 +3,6 @@ package com.babershopcarlosrosa.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
 
@@ -36,11 +35,7 @@ public class ParameterRepository extends ConnectionFactory {
 		} catch (Exception e) {
 			log.error("[ OUT - CREATE PARAMETERS ] Error to verify exist parameters: {} ", e);
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				log.error("[ OUT - CLOSE CONNECTION ERROR ] Error to close connection");
-			}
+			super.closeConnection();
 		}
 		return false;
 	}
@@ -60,12 +55,7 @@ public class ParameterRepository extends ConnectionFactory {
 		} catch (Exception e) {
 			log.error("[ OUT - GET PARAMETERS ] Error to get parameters: {} ", e);
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				log.error("[ OUT - CLOSE CONNECTION ERROR ] Error to close connection");
-
-			}
+			super.closeConnection();
 		}
 
 		return null;
@@ -91,11 +81,7 @@ public class ParameterRepository extends ConnectionFactory {
 		} catch (Exception e) {
 			log.error("[ OUT - CREATE PARAMETERS ] Error to update parameters: {} ", e);
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				log.error("[ OUT - CLOSE CONNECTION ERROR ] Error to close connection");
-			}
+			super.closeConnection();
 		}
 
 		return false;
@@ -119,11 +105,7 @@ public class ParameterRepository extends ConnectionFactory {
 		} catch (Exception e) {
 			log.error("[ OUT - CREATE PARAMETERS ] Error to create parameters: {} ", e);
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				log.error("[ OUT - CLOSE CONNECTION ERROR ] Error to close connection");
-			}
+			super.closeConnection();
 		}
 
 		return false;

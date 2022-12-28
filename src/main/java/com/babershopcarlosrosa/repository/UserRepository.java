@@ -3,7 +3,6 @@ package com.babershopcarlosrosa.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
 
@@ -28,11 +27,7 @@ public class UserRepository extends ConnectionFactory {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.closeConnection();
 		}
 
 		return false;
@@ -59,11 +54,7 @@ public class UserRepository extends ConnectionFactory {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.closeConnection();
 		}
 		
 		return false;
@@ -89,11 +80,7 @@ public class UserRepository extends ConnectionFactory {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.closeConnection();
 		}
 		
 		return false;
@@ -115,11 +102,7 @@ public class UserRepository extends ConnectionFactory {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			super.closeConnection();
 		}
 		
 		return false;

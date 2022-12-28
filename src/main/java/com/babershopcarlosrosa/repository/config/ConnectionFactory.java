@@ -2,34 +2,48 @@ package com.babershopcarlosrosa.repository.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Value;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public abstract class ConnectionFactory {
-	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://barbershopdb.mysql.uhserver.com/barbershopdb";
-	private static final String USER = "dbowner";
-	private static final String PASSWORD = "Sen@c2022";
+
+	@Value("${barbershop.database.driver}")
+	private String driver;
+
+	@Value("${barbershop.database.url}")
+	private String url;
+
+	@Value("${barbershop.database.username}")
+	private String username;
+
+	@Value("${barbershop.database.password}")
+	private String password;
+
 	private static Connection connection = null;
-	
+
 	protected Connection getConnection() {
 		try {
-			Class.forName(DRIVER);
-			connection = DriverManager.getConnection(URL, USER, PASSWORD);
+			Class.forName(driver);
+			connection = DriverManager.getConnection(url, username, password);
 			connection.beginRequest();
 			return connection;
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
+			log.error("[ DATABASE - ERROR ] Error to create JDBC connection: {} ", e.getMessage());
 		}
 
 		return null;
 	}
-	
-	protected void closeConnection() throws SQLException {
-		if (connection != null) {
+
+	protected void closeConnection() {
+		try {
 			connection.endRequest();
 			connection.close();
+		} catch (Exception e) {
+			log.error("[ DATABASE - ERROR ] Error to close JDBC connection: {} ", e.getMessage());
 		}
 	}
+
 }

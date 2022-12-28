@@ -20,7 +20,11 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     public AuthenticateResponseDTO authenticate(AuthenticateRequestDTO request) {
     	log.info("[ INPUT - AUTHENTICATE ] Authenticating user, payload received: {} ", request);
         if (request.getEmail() != null && request.getPassword() != null) {
-            return userRepository.authenticate(request);
+            try {
+				return userRepository.authenticate(request);
+			} catch (Exception e) {
+				log.error("[ AUTHENTICATE - ERROR ] Error to authenticate useer:  {} ", e.getMessage());
+			}
 
         }
 

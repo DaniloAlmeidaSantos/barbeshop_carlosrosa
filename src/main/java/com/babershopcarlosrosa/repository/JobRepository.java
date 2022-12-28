@@ -3,7 +3,6 @@ package com.babershopcarlosrosa.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,11 +31,7 @@ public class JobRepository extends ConnectionFactory {
 		} catch (Exception e) {
 			log.error("[ OUT - CREATE SERVICE ] Error in get jobs repository: {} ", e);
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				log.error("[ OUT - CREATE SERVICE ] Error to close connection in get services repository: {} ", e);
-			}
+			super.closeConnection();
 		}
 		
 		log.info("[ OUT - GET JOBS ] Finshed search jobs: {} ", listJobs.toString());
@@ -62,11 +57,7 @@ public class JobRepository extends ConnectionFactory {
 		} catch (Exception e) {
 			log.error("[ OUT - CREATE SERVICE ] Error in update job repository: {} ", e);
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				log.error("[ OUT - CREATE SERVICE ] Error to close connection in update service repository: {} ", e);
-			}
+			super.closeConnection();
 		}
 		return false;
 	}
@@ -86,11 +77,7 @@ public class JobRepository extends ConnectionFactory {
 		} catch (Exception e) {
 			log.error("[ OUT - CREATE SERVICE ] Error in create job repository: {} ", e);
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				log.error("[ OUT - CREATE SERVICE ] Error to close connection in create service repository: {} ", e);
-			}
+			super.closeConnection();
 		}
 		return false;
 	}

@@ -3,7 +3,6 @@ package com.babershopcarlosrosa.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,12 +36,7 @@ public class ScheduleRepository extends ConnectionFactory {
 			log.error("[ OUT - SCHEDULE ] Error: {} ", e);
 			e.printStackTrace();
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				log.error("[ OUT - SCHEDULE ] Error: {} ", e);
-				e.printStackTrace();
-			}
+			super.closeConnection();
 		}
 
 		return false;
@@ -69,11 +63,7 @@ public class ScheduleRepository extends ConnectionFactory {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				log.error("[ OUT - GET JOBS SCHEDULED ] Error: {} ", e);
-			}
+			super.closeConnection();
 		}
 
 		return false;
@@ -112,12 +102,7 @@ public class ScheduleRepository extends ConnectionFactory {
 			log.error("[ OUT - GET JOBS SCHEDULED ] Error: {} ", e);
 			e.printStackTrace();
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				log.error("[ OUT - GET JOBS SCHEDULED ] Error: {} ", e);
-				e.printStackTrace();
-			}
+			super.closeConnection();
 		}
 
 		return scheduleds;
@@ -158,11 +143,7 @@ public class ScheduleRepository extends ConnectionFactory {
 			log.error("[ OUT - GET JOBS SCHEDULED ] Error: {} ", e);
 			e.printStackTrace();
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				log.error("[ OUT - GET JOBS SCHEDULED ] Error: {} ", e);
-			}
+			super.closeConnection();
 		}
 
 		return scheduleds;
@@ -182,11 +163,7 @@ public class ScheduleRepository extends ConnectionFactory {
 		} catch (Exception e) {
 			log.error("[ OUT -  UPDATE STATUS SCHEDULED ] Error in repository: {} ", e);
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				log.error("[ OUT - UPDATE STATUS SCHEDULED ] Error to close connection: {} ", e);
-			}
+			super.closeConnection();
 		}
 
 		return false;

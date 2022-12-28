@@ -3,7 +3,6 @@ package com.babershopcarlosrosa.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
 
@@ -34,11 +33,7 @@ public class AuthenticateUserRepository extends ConnectionFactory {
 		} catch (Exception e) {
 			log.error("[ OUT - AUTHENTICATE ] Error: {} ", e);
 		} finally {
-			try {
-				super.closeConnection();
-			} catch (SQLException e) {
-				log.error("[ OUT - AUTHENTICATE ] Error: {} ", e.getMessage());
-			}
+			super.closeConnection();
 		}
 
 		return null;
